@@ -5,6 +5,39 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.2] - 2025-01-11
+
+### Added
+- **24 new Snazzy Maps styles** - Expanded from 7 to 27 total map styles
+- New light/minimalist styles:
+  - WY - Clean Light
+  - Interface Map - Minimalist
+  - Becomeadinosaur - Simple
+  - Map Without Labels
+  - Grayscale - No Labels
+  - Masik - Subtle Grayscale
+  - Subtle Greyscale Map
+  - Pale Dawn - Pastel
+  - Light Gray
+  - Light Monochrome
+- New colorful styles:
+  - Bright Colors - No Labels
+  - Blue Water - Grayscale
+  - Blue Essence
+  - Bright & Bubbly
+  - Light Dream
+  - Avocado World - Nature
+  - Mapbox Style
+- New vintage/themed styles:
+  - Aqua - Vintage
+  - Jazzy Green - Neon
+  - Retro - Vintage
+  - Lost in the Desert
+
+### Changed
+- Updated style dropdown description to reflect 27 available styles
+- Reorganized style dropdown for better categorization
+
 ## [1.0.1] - 2025-01-11
 
 ### Fixed
