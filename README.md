@@ -30,7 +30,8 @@ A WordPress plugin that brings beautiful, stylized Google Maps to Elementor usin
   - Default (No Style)
 
 - **Full Google Maps functionality**:
-  - Custom location by address or latitude/longitude
+  - Custom location using Google Place IDs
+  - Optional latitude/longitude override for precise positioning
   - Adjustable zoom levels (0-22)
   - Multiple map types (Roadmap, Satellite, Hybrid, Terrain)
   - Customizable controls (Zoom, Map Type, Street View, Fullscreen)
@@ -40,7 +41,7 @@ A WordPress plugin that brings beautiful, stylized Google Maps to Elementor usin
   - Custom titles and descriptions
   - Info windows (click, hover, or always open)
   - Custom marker icons
-  - Location by address or coordinates
+  - Location using Google Place IDs or coordinates
 
 - **Responsive design** with adjustable height and border radius
 
@@ -51,16 +52,17 @@ A WordPress plugin that brings beautiful, stylized Google Maps to Elementor usin
 3. In the widget settings:
    - Enter your Google Maps API Key
    - Choose a Snazzy Maps style from the dropdown
-   - Set your map location (address or coordinates)
+   - Set your map location using a Google Place ID
+   - Optionally override with specific latitude/longitude coordinates
    - Adjust zoom level and height
-   - Add markers with custom icons and info windows
+   - Add markers with custom icons and info windows (using Place IDs)
    - Configure map controls and interaction options
 
 ## Getting a Google Maps API Key
 
 1. Go to https://console.cloud.google.com/
 2. Create a new project or select an existing one
-3. Enable the "Maps JavaScript API" and "Geocoding API"
+3. Enable the "Maps JavaScript API" and "Places API"
 4. Create credentials (API Key)
 5. **Configure API Key Restrictions:**
    - Go to "Credentials" in Google Cloud Console
@@ -70,10 +72,28 @@ A WordPress plugin that brings beautiful, stylized Google Maps to Elementor usin
      - Add your website URLs (e.g., `yourdomain.com/*`, `*.yourdomain.com/*`)
    - Under "API restrictions":
      - Choose "Restrict key"
-     - Select "Maps JavaScript API" and "Geocoding API"
+     - Select "Maps JavaScript API" and "Places API"
    - Click "Save"
 6. Enable billing for your Google Cloud project (required for Maps API)
 7. Copy the API key and paste it in the widget settings
+
+## Getting a Google Place ID
+
+A Place ID is a unique identifier for a place in Google Maps. To find a Place ID:
+
+1. Use the **Place ID Finder** tool: https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder
+2. Search for your location on the map
+3. Click on the location marker
+4. Copy the Place ID (starts with "ChIJ")
+
+**Alternative methods:**
+- Search on Google Maps, right-click on a location, and look for the Place ID in the URL
+- Use the Places API Place Search to find Place IDs programmatically
+
+**Example Place IDs:**
+- New York City: `ChIJOwg_06VPwokRYv534QaPC8g`
+- Eiffel Tower: `ChIJLU7jZClu5kcR4PcOOO6p3I0`
+- Sydney Opera House: `ChIJAftg0Y2uEmsRH_mJ3DZqwKo`
 
 ### Troubleshooting: ApiTargetBlockedMapError
 
@@ -86,7 +106,7 @@ If you see this error in the browser console, your API key restrictions are bloc
    - `yoursite.com/*`
    - `*.yoursite.com/*` (for subdomains)
    - For local development, add: `localhost/*`
-4. Make sure "Maps JavaScript API" and "Geocoding API" are enabled
+4. Make sure "Maps JavaScript API" and "Places API" are enabled
 5. Save and wait a few minutes for changes to propagate
 
 ## File Structure

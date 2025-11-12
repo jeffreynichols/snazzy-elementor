@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.5] - 2025-01-12
+
+### Changed
+- **BREAKING CHANGE**: Replaced address/location name input with Google Place ID
+- Map center location now uses Google Place ID instead of address geocoding
+- Additional markers now use Google Place ID instead of address
+- Updated to use Places API instead of Geocoding API for location resolution
+- Latitude/longitude override fields still available for precise positioning
+
+### Updated
+- README.md with comprehensive Place ID documentation and examples
+- Google Maps API requirements now include Places API instead of Geocoding API
+- Added Place ID Finder tool link to widget control descriptions
+
+### Technical
+- Replaced `Geocoder.geocode()` calls with `PlacesService.getDetails()` in JavaScript
+- Updated widget controls from `map_location` to `place_id`
+- Updated marker controls from `marker_location` to `marker_place_id`
+- Default Place ID now set to New York City (ChIJOwg_06VPwokRYv534QaPC8g)
+
 ## [1.0.4] - 2025-01-11
 
 ### Changed

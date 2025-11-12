@@ -97,13 +97,13 @@ class Snazzy_Maps_Widget extends Widget_Base {
         );
 
         $this->add_control(
-            'map_location',
+            'place_id',
             [
-                'label' => __( 'Location', 'snazzy-elementor' ),
+                'label' => __( 'Google Place ID', 'snazzy-elementor' ),
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'New York, NY', 'snazzy-elementor' ),
-                'placeholder' => __( 'Enter an address or place name', 'snazzy-elementor' ),
-                'description' => __( 'Enter any location that Google Maps can identify', 'snazzy-elementor' ),
+                'default' => 'ChIJOwg_06VPwokRYv534QaPC8g',
+                'placeholder' => __( 'ChIJOwg_06VPwokRYv534QaPC8g', 'snazzy-elementor' ),
+                'description' => __( 'Enter a Google Place ID. Find Place IDs at https://developers.google.com/maps/documentation/javascript/examples/places-placeid-finder', 'snazzy-elementor' ),
             ]
         );
 
@@ -308,12 +308,13 @@ class Snazzy_Maps_Widget extends Widget_Base {
         $repeater = new Repeater();
 
         $repeater->add_control(
-            'marker_location',
+            'marker_place_id',
             [
-                'label' => __( 'Location', 'snazzy-elementor' ),
+                'label' => __( 'Google Place ID', 'snazzy-elementor' ),
                 'type' => Controls_Manager::TEXT,
-                'default' => __( 'New York, NY', 'snazzy-elementor' ),
-                'description' => __( 'Enter an address or place name', 'snazzy-elementor' ),
+                'default' => '',
+                'placeholder' => __( 'ChIJ...', 'snazzy-elementor' ),
+                'description' => __( 'Enter a Google Place ID', 'snazzy-elementor' ),
             ]
         );
 
@@ -370,7 +371,7 @@ class Snazzy_Maps_Widget extends Widget_Base {
                 'fields' => $repeater->get_controls(),
                 'default' => [
                     [
-                        'marker_location' => __( 'New York, NY', 'snazzy-elementor' ),
+                        'marker_place_id' => 'ChIJOwg_06VPwokRYv534QaPC8g',
                         'marker_title' => __( 'New York', 'snazzy-elementor' ),
                         'marker_description' => __( 'The Big Apple', 'snazzy-elementor' ),
                     ],
@@ -432,7 +433,7 @@ class Snazzy_Maps_Widget extends Widget_Base {
         // Prepare map data
         $map_data = [
             'apiKey' => $settings['google_api_key'],
-            'location' => $settings['map_location'],
+            'placeId' => $settings['place_id'],
             'lat' => $settings['map_lat'],
             'lng' => $settings['map_lng'],
             'zoom' => $settings['map_zoom']['size'],
@@ -455,7 +456,7 @@ class Snazzy_Maps_Widget extends Widget_Base {
         if ( ! empty( $settings['markers'] ) ) {
             foreach ( $settings['markers'] as $marker ) {
                 $marker_data = [
-                    'location' => $marker['marker_location'],
+                    'placeId' => $marker['marker_place_id'],
                     'lat' => $marker['marker_lat'],
                     'lng' => $marker['marker_lng'],
                     'title' => $marker['marker_title'],
@@ -495,7 +496,7 @@ class Snazzy_Maps_Widget extends Widget_Base {
 
         var mapData = {
             apiKey: settings.google_api_key,
-            location: settings.map_location,
+            placeId: settings.place_id,
             lat: settings.map_lat,
             lng: settings.map_lng,
             zoom: settings.map_zoom.size,
@@ -517,7 +518,7 @@ class Snazzy_Maps_Widget extends Widget_Base {
         if ( settings.markers ) {
             _.each( settings.markers, function( marker ) {
                 var markerData = {
-                    location: marker.marker_location,
+                    placeId: marker.marker_place_id,
                     lat: marker.marker_lat,
                     lng: marker.marker_lng,
                     title: marker.marker_title,

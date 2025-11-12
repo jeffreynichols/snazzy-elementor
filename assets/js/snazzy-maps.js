@@ -101,7 +101,6 @@
         }
 
         loadGoogleMapsAPI(settings.apiKey, function() {
-            var geocoder = new google.maps.Geocoder();
             var mapId = $container.attr('id');
 
             // Determine center location
@@ -165,23 +164,28 @@
 
                 // Add additional markers
                 if (settings.markers && settings.markers.length > 0) {
-                    addMarkers(map, settings.markers, geocoder, settings.infoWindowState);
+                    addMarkers(map, settings.markers, settings.infoWindowState);
                 }
             };
 
-            // Use lat/lng if provided, otherwise geocode location
+            // Use lat/lng if provided, otherwise use Place ID
             if (settings.lat && settings.lng) {
                 var center = {
                     lat: parseFloat(settings.lat),
                     lng: parseFloat(settings.lng)
                 };
                 centerMap(center);
-            } else if (settings.location) {
-                geocoder.geocode({ address: settings.location }, function(results, status) {
-                    if (status === 'OK' && results[0]) {
-                        centerMap(results[0].geometry.location);
+            } else if (settings.placeId) {
+                // Use Places API to get location from Place ID
+                var placesService = new google.maps.places.PlacesService($container[0]);
+                placesService.getDetails({
+                    placeId: settings.placeId,
+                    fields: ['geometry']
+                }, function(place, status) {
+                    if (status === google.maps.places.PlacesServiceStatus.OK && place.geometry && place.geometry.location) {
+                        centerMap(place.geometry.location);
                     } else {
-                        console.error('Snazzy Maps: Geocoding failed for location: ' + settings.location);
+                        console.error('Snazzy Maps: Failed to get place details for Place ID: ' + settings.placeId);
                         // Fallback to default location
                         centerMap({ lat: 40.7128, lng: -74.0060 });
                     }
@@ -194,9 +198,10 @@
     };
 
     // Add markers to map
-    var addMarkers = function(map, markers, geocoder, infoWindowState) {
+    var addMarkers = function(map, markers, infoWindowState) {
         var infoWindows = [];
         var markersArray = [];
+        var placesService = new google.maps.places.PlacesService(map);
 
         markers.forEach(function(markerData, index) {
             var addMarkerToMap = function(position) {
@@ -259,19 +264,22 @@
                 }
             };
 
-            // Use lat/lng if provided, otherwise geocode location
+            // Use lat/lng if provided, otherwise use Place ID
             if (markerData.lat && markerData.lng) {
                 var position = {
                     lat: parseFloat(markerData.lat),
                     lng: parseFloat(markerData.lng)
                 };
                 addMarkerToMap(position);
-            } else if (markerData.location) {
-                geocoder.geocode({ address: markerData.location }, function(results, status) {
-                    if (status === 'OK' && results[0]) {
-                        addMarkerToMap(results[0].geometry.location);
+            } else if (markerData.placeId) {
+                placesService.getDetails({
+                    placeId: markerData.placeId,
+                    fields: ['geometry']
+                }, function(place, status) {
+                    if (status === google.maps.places.PlacesServiceStatus.OK && place.geometry && place.geometry.location) {
+                        addMarkerToMap(place.geometry.location);
                     } else {
-                        console.error('Snazzy Maps: Geocoding failed for marker location: ' + markerData.location);
+                        console.error('Snazzy Maps: Failed to get place details for marker Place ID: ' + markerData.placeId);
                     }
                 });
             }
