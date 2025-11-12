@@ -1,4 +1,4 @@
-# Snazzy Elementor
+# Snazzy Maps in Elementor
 
 A WordPress plugin that brings beautiful, stylized Google Maps to Elementor using curated styles from Snazzy Maps.
 

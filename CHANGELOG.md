@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.6] - 2025-01-12
+
+### Changed
+- Updated plugin name from "Snazzy Elementor" to "Snazzy Maps in Elementor"
+- Updated all references throughout codebase (PHP, JavaScript, CSS, documentation)
+
 ## [1.0.5] - 2025-01-12
 
 ### Changed
@@ -91,7 +97,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2025-01-11
 
 ### Added
-- Initial release of Snazzy Elementor plugin
+- Initial release of Snazzy Maps in Elementor plugin
 - Google Maps widget with Snazzy Maps styling
 - 7 curated map styles from Snazzy Maps:
   - Subtle Grayscale

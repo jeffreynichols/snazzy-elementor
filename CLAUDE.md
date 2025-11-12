@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Snazzy Elementor is a WordPress plugin that brings beautifully styled Google Maps to Elementor using curated styles from Snazzy Maps. The primary widget allows users to embed Google Maps with pre-styled themes, multiple markers, and full Google Maps functionality. This is a no-build-system project - all PHP, CSS, and JavaScript files are used directly without compilation or bundling.
+Snazzy Maps in Elementor is a WordPress plugin that brings beautifully styled Google Maps to Elementor using curated styles from Snazzy Maps. The primary widget allows users to embed Google Maps with pre-styled themes, multiple markers, and full Google Maps functionality. This is a no-build-system project - all PHP, CSS, and JavaScript files are used directly without compilation or bundling.
 
 ## Version Management
 

@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: Snazzy Elementor
+ * Plugin Name: Snazzy Maps in Elementor
  * Description: Embed Google Maps with beautiful Snazzy Maps styles in Elementor
- * Version: 1.0.5
+ * Version: 1.0.6
  * Author: adPharos.com
  * Author URI: https://adpharos.com
  * Text Domain: snazzy-elementor
@@ -13,12 +13,12 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
-define( 'SNAZZY_ELEMENTOR_VERSION', '1.0.5' );
+define( 'SNAZZY_ELEMENTOR_VERSION', '1.0.6' );
 define( 'SNAZZY_ELEMENTOR_PATH', plugin_dir_path( __FILE__ ) );
 define( 'SNAZZY_ELEMENTOR_URL', plugin_dir_url( __FILE__ ) );
 
 /**
- * Main Snazzy Elementor Class
+ * Main Snazzy Maps in Elementor Class
  */
 final class Snazzy_Elementor {
 
@@ -78,7 +78,7 @@ final class Snazzy_Elementor {
     public function admin_notice_missing_elementor() {
         $message = sprintf(
             esc_html__( '"%1$s" requires "%2$s" to be installed and activated.', 'snazzy-elementor' ),
-            '<strong>' . esc_html__( 'Snazzy Elementor', 'snazzy-elementor' ) . '</strong>',
+            '<strong>' . esc_html__( 'Snazzy Maps in Elementor', 'snazzy-elementor' ) . '</strong>',
             '<strong>' . esc_html__( 'Elementor', 'snazzy-elementor' ) . '</strong>'
         );
 
@@ -88,7 +88,7 @@ final class Snazzy_Elementor {
     public function admin_notice_minimum_elementor_version() {
         $message = sprintf(
             esc_html__( '"%1$s" requires "%2$s" version %3$s or greater.', 'snazzy-elementor' ),
-            '<strong>' . esc_html__( 'Snazzy Elementor', 'snazzy-elementor' ) . '</strong>',
+            '<strong>' . esc_html__( 'Snazzy Maps in Elementor', 'snazzy-elementor' ) . '</strong>',
             '<strong>' . esc_html__( 'Elementor', 'snazzy-elementor' ) . '</strong>',
             '3.0.0'
         );
