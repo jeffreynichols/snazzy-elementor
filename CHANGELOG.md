@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.9] - 2025-01-12
+
+### Fixed
+- Fixed "A Map's styles property cannot be set when a mapId is present" console error
+- Snazzy Maps styles are now only applied when NO Map ID is provided
+- When Map ID is present, styles must be configured in Google Cloud Console
+
+### Changed
+- Updated Map ID control description to clarify styles limitation
+- Updated README with clear explanation of Map ID vs. Snazzy styles behavior
+- **Important**: Users must choose: Use Map ID (for Advanced Markers) OR use Snazzy style dropdown
+
+### Technical
+- Added conditional logic to only set `styles` property when `mapId` is not present
+- Map initialization now checks for Map ID before applying Snazzy styles array
+
 ## [1.0.8] - 2025-01-12
 
 ### Added

@@ -61,7 +61,7 @@ class Snazzy_Maps_Widget extends Widget_Base {
             [
                 'label' => __( 'Google Map ID', 'snazzy-elementor' ),
                 'type' => Controls_Manager::TEXT,
-                'description' => __( 'Required for Advanced Markers. Create a Map ID in Google Cloud Console. Leave empty to use standard markers.', 'snazzy-elementor' ),
+                'description' => __( 'Required for Advanced Markers. Note: When using Map ID, Snazzy Maps styles must be configured in Google Cloud Console instead of the style dropdown below.', 'snazzy-elementor' ),
                 'placeholder' => 'your-map-id',
             ]
         );

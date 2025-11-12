@@ -59,7 +59,10 @@ A WordPress plugin that brings beautiful, stylized Google Maps to Elementor usin
    - Add markers with custom icons and info windows (using Place IDs)
    - Configure map controls and interaction options
 
-**Note:** The Map ID is required to use Advanced Markers. Without a Map ID, the map will still work but you'll see warnings in the console.
+**Important Notes:**
+- The Map ID is required to use Advanced Markers. Without a Map ID, the map will still work but you'll see warnings in the console.
+- **When using a Map ID**: Snazzy Maps styles must be configured in the Google Cloud Console for that Map ID. The style dropdown in the widget will be ignored.
+- **When NOT using a Map ID**: You can use the style dropdown to select any of the 27 Snazzy Maps styles.
 
 ## Getting a Google Maps API Key
 
@@ -70,7 +73,7 @@ A WordPress plugin that brings beautiful, stylized Google Maps to Elementor usin
    - Go to "Map Management" in Google Cloud Console
    - Click "Create Map ID"
    - Choose "JavaScript" as the map type
-   - Select a map style (or leave default)
+   - **Important**: If you want to use Snazzy Maps styles, you'll need to configure the style in the Cloud Console here (or leave the Map ID field empty in the widget to use the dropdown styles instead)
    - Copy the Map ID (you'll need this in the widget settings)
 5. Create credentials (API Key)
 6. **Configure API Key Restrictions:**
