@@ -118,6 +118,11 @@
                     styles: snazzyStyles[settings.snazzyStyle] || []
                 };
 
+                // Add Map ID if provided (required for AdvancedMarkerElement)
+                if (settings.mapId) {
+                    mapOptions.mapId = settings.mapId;
+                }
+
                 var map = new google.maps.Map($container[0], mapOptions);
                 window.snazzyMapsInstances[mapId] = map;
 

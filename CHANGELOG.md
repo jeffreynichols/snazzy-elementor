@@ -5,6 +5,21 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.8] - 2025-01-12
+
+### Added
+- Google Map ID field in widget settings
+- Map ID is now passed to map initialization options
+- Documentation for creating Map IDs in Google Cloud Console
+
+### Fixed
+- "The map is initialized without a valid Map ID" console warning
+- Advanced Markers now work properly when Map ID is provided
+
+### Changed
+- Map ID is optional but recommended (required for AdvancedMarkerElement to work without warnings)
+- Updated README with Map ID setup instructions
+
 ## [1.0.7] - 2025-01-12
 
 ### Changed
