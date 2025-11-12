@@ -18,20 +18,38 @@
     // Global object to store map instances
     window.snazzyMapsInstances = window.snazzyMapsInstances || {};
 
+    // Check if Google Maps API is fully loaded and ready
+    var isGoogleMapsReady = function() {
+        return typeof google !== 'undefined' &&
+               typeof google.maps !== 'undefined' &&
+               typeof google.maps.Geocoder !== 'undefined' &&
+               typeof google.maps.Map !== 'undefined';
+    };
+
+    // Wait for Google Maps API to be fully ready
+    var waitForGoogleMaps = function(callback, attempts) {
+        attempts = attempts || 0;
+
+        if (isGoogleMapsReady()) {
+            callback();
+        } else if (attempts < 50) { // Try for up to 5 seconds
+            setTimeout(function() {
+                waitForGoogleMaps(callback, attempts + 1);
+            }, 100);
+        } else {
+            console.error('Snazzy Maps: Google Maps API failed to initialize after multiple attempts');
+        }
+    };
+
     // Load Google Maps API
     var loadGoogleMapsAPI = function(apiKey, callback) {
-        if (typeof google !== 'undefined' && typeof google.maps !== 'undefined') {
+        if (isGoogleMapsReady()) {
             callback();
             return;
         }
 
         if (window.googleMapsApiLoading) {
-            var checkInterval = setInterval(function() {
-                if (typeof google !== 'undefined' && typeof google.maps !== 'undefined') {
-                    clearInterval(checkInterval);
-                    callback();
-                }
-            }, 100);
+            waitForGoogleMaps(callback);
             return;
         }
 
@@ -43,7 +61,7 @@
         script.defer = true;
         script.onload = function() {
             window.googleMapsApiLoading = false;
-            callback();
+            waitForGoogleMaps(callback);
         };
         script.onerror = function() {
             window.googleMapsApiLoading = false;
