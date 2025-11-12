@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.7] - 2025-01-12
+
+### Changed
+- **BREAKING CHANGE**: Updated to use new Google Maps Places API (New) instead of legacy PlacesService
+- Migrated from deprecated `google.maps.Marker` to `google.maps.marker.AdvancedMarkerElement`
+- Migrated from deprecated `google.maps.places.PlacesService.getDetails()` to `google.maps.places.Place.fetchFields()`
+- Added `marker` library to Google Maps API loading
+- Updated API requirements to use "Places API (New)" instead of legacy "Places API"
+
+### Technical
+- Replaced `PlacesService` with new `Place` class and promise-based `fetchFields()` method
+- Updated all marker instances to use `AdvancedMarkerElement` for better performance
+- Changed InfoWindow `open()` calls to use new object-based syntax with `anchor` parameter
+- Added error handling with `.catch()` for Promise-based Place API calls
+- Custom marker icons temporarily disabled (requires PinElement migration - future update)
+
+### Fixed
+- Eliminated deprecation warnings for Google Maps APIs (PlacesService and Marker)
+- Improved compatibility with Google Maps JavaScript API as of March 2025
+
 ## [1.0.6] - 2025-01-12
 
 ### Changed

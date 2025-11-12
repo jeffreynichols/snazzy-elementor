@@ -62,7 +62,7 @@ A WordPress plugin that brings beautiful, stylized Google Maps to Elementor usin
 
 1. Go to https://console.cloud.google.com/
 2. Create a new project or select an existing one
-3. Enable the "Maps JavaScript API" and "Places API"
+3. Enable the "Maps JavaScript API" and "Places API (New)"
 4. Create credentials (API Key)
 5. **Configure API Key Restrictions:**
    - Go to "Credentials" in Google Cloud Console
@@ -72,10 +72,11 @@ A WordPress plugin that brings beautiful, stylized Google Maps to Elementor usin
      - Add your website URLs (e.g., `yourdomain.com/*`, `*.yourdomain.com/*`)
    - Under "API restrictions":
      - Choose "Restrict key"
-     - Select "Maps JavaScript API" and "Places API"
+     - Select "Maps JavaScript API" and "Places API (New)"
    - Click "Save"
 6. Enable billing for your Google Cloud project (required for Maps API)
-7. Copy the API key and paste it in the widget settings
+7. **Important:** Make sure to enable the new "Places API (New)" NOT the legacy "Places API"
+8. Copy the API key and paste it in the widget settings
 
 ## Getting a Google Place ID
 
@@ -106,8 +107,9 @@ If you see this error in the browser console, your API key restrictions are bloc
    - `yoursite.com/*`
    - `*.yoursite.com/*` (for subdomains)
    - For local development, add: `localhost/*`
-4. Make sure "Maps JavaScript API" and "Places API" are enabled
-5. Save and wait a few minutes for changes to propagate
+4. Make sure "Maps JavaScript API" and "Places API (New)" are enabled
+5. **Important:** Ensure you're using the new "Places API (New)" NOT the legacy "Places API"
+6. Save and wait a few minutes for changes to propagate
 
 ## File Structure
 
