@@ -5,6 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.10] - 2025-01-12
+
+### Removed
+- **Map ID feature removed** - The Map ID field has been completely removed from the plugin
+- Map ID was incompatible with the plugin's core purpose: providing easy access to Snazzy Maps styles
+
+### Changed
+- Snazzy Maps styles are now always applied, regardless of any settings
+- Simplified widget configuration by removing Map ID field
+- Updated documentation to remove Map ID references and setup instructions
+
+### Why This Change?
+The Map ID feature defeated the entire purpose of the plugin. When Map ID was present, users couldn't use the Snazzy Maps style dropdown (the plugin's main feature). The console warning about Map ID not being present doesn't affect functionality - maps and markers work perfectly without it. This change refocuses the plugin on what it does best: making Snazzy Maps styling easy.
+
 ## [1.0.9] - 2025-01-12
 
 ### Fixed

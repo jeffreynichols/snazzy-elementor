@@ -57,16 +57,6 @@ class Snazzy_Maps_Widget extends Widget_Base {
         );
 
         $this->add_control(
-            'map_id',
-            [
-                'label' => __( 'Google Map ID', 'snazzy-elementor' ),
-                'type' => Controls_Manager::TEXT,
-                'description' => __( 'Required for Advanced Markers. Note: When using Map ID, Snazzy Maps styles must be configured in Google Cloud Console instead of the style dropdown below.', 'snazzy-elementor' ),
-                'placeholder' => 'your-map-id',
-            ]
-        );
-
-        $this->add_control(
             'snazzy_style',
             [
                 'label' => __( 'Snazzy Maps Style', 'snazzy-elementor' ),
@@ -443,7 +433,6 @@ class Snazzy_Maps_Widget extends Widget_Base {
         // Prepare map data
         $map_data = [
             'apiKey' => $settings['google_api_key'],
-            'mapId' => $settings['map_id'],
             'placeId' => $settings['place_id'],
             'lat' => $settings['map_lat'],
             'lng' => $settings['map_lng'],
@@ -507,7 +496,6 @@ class Snazzy_Maps_Widget extends Widget_Base {
 
         var mapData = {
             apiKey: settings.google_api_key,
-            mapId: settings.map_id,
             placeId: settings.place_id,
             lat: settings.map_lat,
             lng: settings.map_lng,

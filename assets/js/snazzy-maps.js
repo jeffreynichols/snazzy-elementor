@@ -114,17 +114,9 @@
                     streetViewControl: settings.streetViewControl,
                     fullscreenControl: settings.fullscreenControl,
                     draggable: settings.draggable,
-                    scrollwheel: settings.scrollwheel
+                    scrollwheel: settings.scrollwheel,
+                    styles: snazzyStyles[settings.snazzyStyle] || []
                 };
-
-                // Add Map ID if provided (required for AdvancedMarkerElement)
-                // Note: When Map ID is present, styles must be set in Cloud Console
-                if (settings.mapId) {
-                    mapOptions.mapId = settings.mapId;
-                } else {
-                    // Only apply Snazzy Maps styles when no Map ID is present
-                    mapOptions.styles = snazzyStyles[settings.snazzyStyle] || [];
-                }
 
                 var map = new google.maps.Map($container[0], mapOptions);
                 window.snazzyMapsInstances[mapId] = map;
