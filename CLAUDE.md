@@ -22,10 +22,20 @@ Version numbers are located in two places in `snazzy-elementor.php`:
 **Process:**
 1. Make your code changes
 2. Update both version numbers in `snazzy-elementor.php`
-3. Commit with a descriptive message
-4. Push to GitHub
+3. Update `CHANGELOG.md` with changes under a new version heading
+4. Commit with a descriptive message (e.g., "Version bump to X.Y.Z")
+5. Push to GitHub
 
 Example: If current version is 1.0.1 and you fix a bug, update to 1.0.2.
+
+**CHANGELOG.md Format:**
+Follow the "Keep a Changelog" format. Add changes under appropriate categories:
+- `Added` for new features
+- `Changed` for changes in existing functionality
+- `Deprecated` for soon-to-be removed features
+- `Removed` for removed features
+- `Fixed` for bug fixes
+- `Security` for security fixes
 
 ## Architecture
 
