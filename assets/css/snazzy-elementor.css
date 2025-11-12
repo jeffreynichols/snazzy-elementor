@@ -1,0 +1,60 @@
+/* Snazzy Elementor Widgets Styles */
+
+.snazzy-sample-widget {
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.snazzy-title {
+    margin: 0 0 15px 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.snazzy-description {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+/* Snazzy Maps Widget Styles */
+.snazzy-maps-wrapper {
+    width: 100%;
+    overflow: hidden;
+}
+
+.snazzy-map-container {
+    width: 100%;
+    height: 400px;
+    background: #f0f0f0;
+}
+
+.snazzy-maps-notice {
+    padding: 20px;
+    background: #fff3cd;
+    border: 1px solid #ffeeba;
+    border-radius: 4px;
+    color: #856404;
+    font-size: 14px;
+}
+
+/* Info Window Styles */
+.snazzy-info-window {
+    padding: 10px;
+    max-width: 250px;
+}
+
+.snazzy-info-window h3 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+}
+
+.snazzy-info-window p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #666;
+}

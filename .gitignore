@@ -1,0 +1,37 @@
+# WordPress
+*.log
+.htaccess
+sitemap.xml
+sitemap.xml.gz
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+._*
+
+# Node modules (if added in future)
+node_modules/
+package-lock.json
+yarn.lock
+
+# Build files (if added in future)
+/dist/
+/build/
+
+# Composer (if added in future)
+/vendor/
+composer.lock
+
+# Environment files
+.env
+.env.local
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.old
