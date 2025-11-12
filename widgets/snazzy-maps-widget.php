@@ -179,6 +179,44 @@ class Snazzy_Maps_Widget extends Widget_Base {
             ]
         );
 
+        $this->add_control(
+            'show_center_marker',
+            [
+                'label' => __( 'Show Marker at Center Location', 'snazzy-elementor' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Yes', 'snazzy-elementor' ),
+                'label_off' => __( 'No', 'snazzy-elementor' ),
+                'default' => 'yes',
+                'description' => __( 'Display a marker at the map center location', 'snazzy-elementor' ),
+            ]
+        );
+
+        $this->add_control(
+            'center_marker_title',
+            [
+                'label' => __( 'Center Marker Title', 'snazzy-elementor' ),
+                'type' => Controls_Manager::TEXT,
+                'default' => '',
+                'placeholder' => __( 'Location name', 'snazzy-elementor' ),
+                'condition' => [
+                    'show_center_marker' => 'yes',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'center_marker_description',
+            [
+                'label' => __( 'Center Marker Description', 'snazzy-elementor' ),
+                'type' => Controls_Manager::TEXTAREA,
+                'default' => '',
+                'placeholder' => __( 'Location details', 'snazzy-elementor' ),
+                'condition' => [
+                    'show_center_marker' => 'yes',
+                ],
+            ]
+        );
+
         $this->end_controls_section();
 
         // Map Controls Section
@@ -408,6 +446,9 @@ class Snazzy_Maps_Widget extends Widget_Base {
             'scrollwheel' => $settings['scroll_wheel_zoom'] === 'yes',
             'markers' => [],
             'infoWindowState' => $settings['info_window_open'],
+            'showCenterMarker' => $settings['show_center_marker'] === 'yes',
+            'centerMarkerTitle' => $settings['center_marker_title'],
+            'centerMarkerDescription' => $settings['center_marker_description'],
         ];
 
         // Add markers
@@ -467,7 +508,10 @@ class Snazzy_Maps_Widget extends Widget_Base {
             draggable: settings.draggable === 'yes',
             scrollwheel: settings.scroll_wheel_zoom === 'yes',
             markers: [],
-            infoWindowState: settings.info_window_open
+            infoWindowState: settings.info_window_open,
+            showCenterMarker: settings.show_center_marker === 'yes',
+            centerMarkerTitle: settings.center_marker_title,
+            centerMarkerDescription: settings.center_marker_description
         };
 
         if ( settings.markers ) {

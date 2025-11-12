@@ -122,7 +122,48 @@
                 var map = new google.maps.Map($container[0], mapOptions);
                 window.snazzyMapsInstances[mapId] = map;
 
-                // Add markers
+                // Add center marker if enabled
+                if (settings.showCenterMarker) {
+                    var centerMarker = new google.maps.Marker({
+                        position: center,
+                        map: map,
+                        title: settings.centerMarkerTitle || ''
+                    });
+
+                    // Add info window for center marker if title or description exists
+                    if (settings.centerMarkerTitle || settings.centerMarkerDescription) {
+                        var contentString = '<div class="snazzy-info-window">';
+                        if (settings.centerMarkerTitle) {
+                            contentString += '<h3>' + settings.centerMarkerTitle + '</h3>';
+                        }
+                        if (settings.centerMarkerDescription) {
+                            contentString += '<p>' + settings.centerMarkerDescription + '</p>';
+                        }
+                        contentString += '</div>';
+
+                        var centerInfoWindow = new google.maps.InfoWindow({
+                            content: contentString
+                        });
+
+                        // Handle info window behavior
+                        if (settings.infoWindowState === 'always') {
+                            centerInfoWindow.open(map, centerMarker);
+                        } else if (settings.infoWindowState === 'click') {
+                            centerMarker.addListener('click', function() {
+                                centerInfoWindow.open(map, centerMarker);
+                            });
+                        } else if (settings.infoWindowState === 'hover') {
+                            centerMarker.addListener('mouseover', function() {
+                                centerInfoWindow.open(map, centerMarker);
+                            });
+                            centerMarker.addListener('mouseout', function() {
+                                centerInfoWindow.close();
+                            });
+                        }
+                    }
+                }
+
+                // Add additional markers
                 if (settings.markers && settings.markers.length > 0) {
                     addMarkers(map, settings.markers, geocoder, settings.infoWindowState);
                 }
