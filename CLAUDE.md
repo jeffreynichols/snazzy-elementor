@@ -132,3 +132,30 @@ Since this is a WordPress plugin:
 5. For Google Maps testing, ensure API key has proper restrictions and billing enabled
 6. Test both address-based and coordinate-based locations
 7. Check browser console for JavaScript errors if maps don't load
+
+## Common Issues and Troubleshooting
+
+### ApiTargetBlockedMapError
+**Cause:** Google Maps API key restrictions are blocking requests from the current domain.
+
+**Fix:**
+1. Go to Google Cloud Console > Credentials
+2. Edit the API key
+3. Add the website domain to HTTP referrer restrictions (e.g., `yoursite.com/*`)
+4. Ensure Maps JavaScript API and Geocoding API are enabled
+5. Wait 2-5 minutes for changes to propagate
+
+### Maps Not Loading
+**Check:**
+1. Browser console for specific error messages
+2. API key is entered correctly in widget settings
+3. Billing is enabled on Google Cloud project
+4. Both "Maps JavaScript API" and "Geocoding API" are enabled
+5. No JavaScript conflicts with other plugins (check for jQuery errors)
+
+### Geocoding Fails
+If markers or center location don't appear when using addresses:
+1. Verify "Geocoding API" is enabled in Google Cloud Console
+2. Check browser console for geocoding error messages
+3. Try using latitude/longitude instead of addresses for troubleshooting
+4. Ensure address format is recognizable by Google Maps (e.g., "New York, NY" or "Times Square, New York")

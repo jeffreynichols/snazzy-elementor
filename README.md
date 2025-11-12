@@ -62,7 +62,32 @@ A WordPress plugin that brings beautiful, stylized Google Maps to Elementor usin
 2. Create a new project or select an existing one
 3. Enable the "Maps JavaScript API" and "Geocoding API"
 4. Create credentials (API Key)
-5. Copy the API key and paste it in the widget settings
+5. **Configure API Key Restrictions:**
+   - Go to "Credentials" in Google Cloud Console
+   - Click on your API key
+   - Under "Application restrictions":
+     - Choose "HTTP referrers (web sites)"
+     - Add your website URLs (e.g., `yourdomain.com/*`, `*.yourdomain.com/*`)
+   - Under "API restrictions":
+     - Choose "Restrict key"
+     - Select "Maps JavaScript API" and "Geocoding API"
+   - Click "Save"
+6. Enable billing for your Google Cloud project (required for Maps API)
+7. Copy the API key and paste it in the widget settings
+
+### Troubleshooting: ApiTargetBlockedMapError
+
+If you see this error in the browser console, your API key restrictions are blocking the map:
+
+**Solution:**
+1. Go to https://console.cloud.google.com/apis/credentials
+2. Click on your API key
+3. Under "Application restrictions", add your website domain:
+   - `yoursite.com/*`
+   - `*.yoursite.com/*` (for subdomains)
+   - For local development, add: `localhost/*`
+4. Make sure "Maps JavaScript API" and "Geocoding API" are enabled
+5. Save and wait a few minutes for changes to propagate
 
 ## File Structure
 

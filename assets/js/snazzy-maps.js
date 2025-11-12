@@ -38,12 +38,16 @@
         window.googleMapsApiLoading = true;
 
         var script = document.createElement('script');
-        script.src = 'https://maps.googleapis.com/maps/api/js?key=' + apiKey + '&libraries=places';
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=' + apiKey + '&libraries=places&loading=async';
         script.async = true;
         script.defer = true;
         script.onload = function() {
             window.googleMapsApiLoading = false;
             callback();
+        };
+        script.onerror = function() {
+            window.googleMapsApiLoading = false;
+            console.error('Snazzy Maps: Failed to load Google Maps API. Check your API key and restrictions.');
         };
         document.head.appendChild(script);
     };
