@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Snazzy Elementor
  * Description: Embed Google Maps with beautiful Snazzy Maps styles in Elementor
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: Your Name
  * Text Domain: snazzy-elementor
  * Domain Path: /languages
@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly
 }
 
-define( 'SNAZZY_ELEMENTOR_VERSION', '1.0.0' );
+define( 'SNAZZY_ELEMENTOR_VERSION', '1.0.1' );
 define( 'SNAZZY_ELEMENTOR_PATH', plugin_dir_path( __FILE__ ) );
 define( 'SNAZZY_ELEMENTOR_URL', plugin_dir_url( __FILE__ ) );
 

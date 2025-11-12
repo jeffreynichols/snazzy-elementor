@@ -6,6 +6,27 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Snazzy Elementor is a WordPress plugin that brings beautifully styled Google Maps to Elementor using curated styles from Snazzy Maps. The primary widget allows users to embed Google Maps with pre-styled themes, multiple markers, and full Google Maps functionality. This is a no-build-system project - all PHP, CSS, and JavaScript files are used directly without compilation or bundling.
 
+## Version Management
+
+**IMPORTANT:** Always increment the version number before committing changes to GitHub.
+
+Version numbers are located in two places in `snazzy-elementor.php`:
+1. Plugin header comment: `Version: X.Y.Z` (line 5)
+2. PHP constant: `define( 'SNAZZY_ELEMENTOR_VERSION', 'X.Y.Z' );` (line 15)
+
+**Versioning scheme (Semantic Versioning):**
+- **Major (X.0.0):** Breaking changes or major feature additions
+- **Minor (1.X.0):** New features, backward compatible
+- **Patch (1.0.X):** Bug fixes, small improvements
+
+**Process:**
+1. Make your code changes
+2. Update both version numbers in `snazzy-elementor.php`
+3. Commit with a descriptive message
+4. Push to GitHub
+
+Example: If current version is 1.0.1 and you fix a bug, update to 1.0.2.
+
 ## Architecture
 
 ### Plugin Bootstrap (`snazzy-elementor.php`)
