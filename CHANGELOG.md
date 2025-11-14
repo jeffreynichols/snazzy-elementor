@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.13] - 2025-01-14
+
+### Fixed
+- Fixed "Unknown fields requested: googleMapsUri" error in Places API
+- Removed invalid `googleMapsUri` field from API request
+- Now constructs Google Maps URL from Place ID manually: `https://www.google.com/maps/place/?q=place_id:{placeId}`
+
+### Changed
+- Review count is now clickable and links to Google Maps
+- All links (Directions, Reviews, View larger map) use the constructed URL
+
 ## [1.0.12] - 2025-01-14
 
 ### Added

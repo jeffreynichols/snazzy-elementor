@@ -99,10 +99,14 @@
 
         // Fetch place details
         place.fetchFields({
-            fields: ['displayName', 'formattedAddress', 'rating', 'userRatingCount', 'googleMapsUri']
+            fields: ['displayName', 'formattedAddress', 'rating', 'userRatingCount']
         }).then(function(response) {
             if (response.place) {
                 var placeData = response.place;
+
+                // Construct Google Maps URL from Place ID
+                var googleMapsUrl = 'https://www.google.com/maps/place/?q=place_id:' + placeId;
+
                 var cardHtml = '<div class="snazzy-place-card">';
 
                 // Place name
@@ -121,20 +125,16 @@
                     cardHtml += '<span class="rating-value">' + placeData.rating + '</span>';
                     cardHtml += '<span class="rating-stars">' + generateStars(placeData.rating) + '</span>';
                     if (placeData.userRatingCount) {
-                        cardHtml += '<span class="review-count">' + placeData.userRatingCount + ' reviews</span>';
+                        cardHtml += '<a href="' + googleMapsUrl + '" target="_blank" class="review-count">' + placeData.userRatingCount + ' reviews</a>';
                     }
                     cardHtml += '</div>';
                 }
 
                 // Directions link
-                if (placeData.googleMapsUri) {
-                    cardHtml += '<a href="' + placeData.googleMapsUri + '" target="_blank" class="place-directions">Directions</a>';
-                }
+                cardHtml += '<a href="' + googleMapsUrl + '" target="_blank" class="place-directions">Directions</a>';
 
                 // View larger map link
-                if (placeData.googleMapsUri) {
-                    cardHtml += '<a href="' + placeData.googleMapsUri + '" target="_blank" class="place-larger-map">View larger map</a>';
-                }
+                cardHtml += '<a href="' + googleMapsUrl + '" target="_blank" class="place-larger-map">View larger map</a>';
 
                 cardHtml += '</div>';
 
