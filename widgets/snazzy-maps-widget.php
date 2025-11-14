@@ -180,6 +180,18 @@ class Snazzy_Maps_Widget extends Widget_Base {
         );
 
         $this->add_control(
+            'show_place_card',
+            [
+                'label' => __( 'Show Place Details Card', 'snazzy-elementor' ),
+                'type' => Controls_Manager::SWITCHER,
+                'label_on' => __( 'Yes', 'snazzy-elementor' ),
+                'label_off' => __( 'No', 'snazzy-elementor' ),
+                'default' => 'yes',
+                'description' => __( 'Display place details card with name, address, rating, and reviews', 'snazzy-elementor' ),
+            ]
+        );
+
+        $this->add_control(
             'show_center_marker',
             [
                 'label' => __( 'Show Marker at Center Location', 'snazzy-elementor' ),
@@ -447,6 +459,7 @@ class Snazzy_Maps_Widget extends Widget_Base {
             'scrollwheel' => $settings['scroll_wheel_zoom'] === 'yes',
             'markers' => [],
             'infoWindowState' => $settings['info_window_open'],
+            'showPlaceCard' => $settings['show_place_card'] === 'yes',
             'showCenterMarker' => $settings['show_center_marker'] === 'yes',
             'centerMarkerTitle' => $settings['center_marker_title'],
             'centerMarkerDescription' => $settings['center_marker_description'],
@@ -510,6 +523,7 @@ class Snazzy_Maps_Widget extends Widget_Base {
             scrollwheel: settings.scroll_wheel_zoom === 'yes',
             markers: [],
             infoWindowState: settings.info_window_open,
+            showPlaceCard: settings.show_place_card === 'yes',
             showCenterMarker: settings.show_center_marker === 'yes',
             centerMarkerTitle: settings.center_marker_title,
             centerMarkerDescription: settings.center_marker_description

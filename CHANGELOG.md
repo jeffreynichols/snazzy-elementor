@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.12] - 2025-01-14
+
+### Added
+- **Place Details Card** - New feature to display Google Place information in a card overlay
+- Place card shows place name, formatted address, rating with stars, review count, and links
+- "Directions" button linking to Google Maps with directions
+- "View larger map" link to open full Google Maps
+- Widget control to enable/disable place details card (enabled by default)
+
+### Changed
+- Updated Places API integration to fetch additional fields: displayName, formattedAddress, rating, userRatingCount, googleMapsUri
+- Map container now uses relative positioning to support absolute positioned card overlay
+
+### Technical
+- Added `showPlaceCard()` function to fetch and display place details from Places API (New)
+- Added `generateStars()` helper function to render star ratings
+- Styled place card to match Google Maps design with modern UI
+- Card positioned in top-left corner with white background and subtle shadow
+
 ## [1.0.11] - 2025-01-14
 
 ### Fixed

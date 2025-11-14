@@ -91,6 +91,76 @@
         document.head.appendChild(script);
     };
 
+    // Show place details card
+    var showPlaceCard = function(map, placeId, $container) {
+        var place = new google.maps.places.Place({
+            id: placeId
+        });
+
+        // Fetch place details
+        place.fetchFields({
+            fields: ['displayName', 'formattedAddress', 'rating', 'userRatingCount', 'googleMapsUri']
+        }).then(function(response) {
+            if (response.place) {
+                var placeData = response.place;
+                var cardHtml = '<div class="snazzy-place-card">';
+
+                // Place name
+                if (placeData.displayName) {
+                    cardHtml += '<div class="place-name">' + placeData.displayName + '</div>';
+                }
+
+                // Address
+                if (placeData.formattedAddress) {
+                    cardHtml += '<div class="place-address">' + placeData.formattedAddress + '</div>';
+                }
+
+                // Rating and reviews
+                if (placeData.rating) {
+                    cardHtml += '<div class="place-rating">';
+                    cardHtml += '<span class="rating-value">' + placeData.rating + '</span>';
+                    cardHtml += '<span class="rating-stars">' + generateStars(placeData.rating) + '</span>';
+                    if (placeData.userRatingCount) {
+                        cardHtml += '<span class="review-count">' + placeData.userRatingCount + ' reviews</span>';
+                    }
+                    cardHtml += '</div>';
+                }
+
+                // Directions link
+                if (placeData.googleMapsUri) {
+                    cardHtml += '<a href="' + placeData.googleMapsUri + '" target="_blank" class="place-directions">Directions</a>';
+                }
+
+                // View larger map link
+                if (placeData.googleMapsUri) {
+                    cardHtml += '<a href="' + placeData.googleMapsUri + '" target="_blank" class="place-larger-map">View larger map</a>';
+                }
+
+                cardHtml += '</div>';
+
+                // Add card to map container
+                $container.append(cardHtml);
+            }
+        }).catch(function(error) {
+            console.error('Snazzy Maps: Error fetching place details: ', error);
+        });
+    };
+
+    // Generate star rating HTML
+    var generateStars = function(rating) {
+        var stars = '';
+        var fullStars = Math.floor(rating);
+        var hasHalfStar = (rating % 1) >= 0.5;
+
+        for (var i = 0; i < fullStars; i++) {
+            stars += '★';
+        }
+        if (hasHalfStar) {
+            stars += '☆';
+        }
+        return stars;
+    };
+
     // Initialize a single map
     var initMap = function($container) {
         var settings = $container.data('map-settings');
@@ -120,6 +190,11 @@
 
                 var map = new google.maps.Map($container[0], mapOptions);
                 window.snazzyMapsInstances[mapId] = map;
+
+                // Show place details card if enabled
+                if (settings.showPlaceCard && settings.placeId) {
+                    showPlaceCard(map, settings.placeId, $container);
+                }
 
                 // Add center marker if enabled
                 if (settings.showCenterMarker) {
