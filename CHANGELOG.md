@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.11] - 2025-01-14
+
+### Fixed
+- Fixed markers not appearing on map by reverting to classic Marker API
+- Fixed "The map is initialized without a valid Map ID" console warning
+- Fixed "This page can't load Google Maps correctly" error caused by AdvancedMarkerElement requiring Map ID
+
+### Changed
+- Reverted from `google.maps.marker.AdvancedMarkerElement` to classic `google.maps.Marker`
+- Removed `marker` library from Google Maps API loading (no longer needed)
+- Custom marker icons now work properly with classic markers
+
+### Technical
+- Classic markers are compatible with Snazzy Maps custom styles without requiring Map ID
+- InfoWindow API calls updated to use standard syntax: `infoWindow.open(map, marker)`
+- All marker event listeners work correctly with classic marker API
+
+### Why This Change?
+AdvancedMarkerElement requires a Map ID, but Map IDs override custom styles with Cloud Console-configured styles. This made it impossible to use Snazzy Maps styles (the plugin's core feature). By using classic markers, we maintain full compatibility with custom Snazzy Maps styling while ensuring markers display properly.
+
 ## [1.0.10] - 2025-01-12
 
 ### Removed

@@ -77,7 +77,7 @@
         window.googleMapsApiLoading = true;
 
         var script = document.createElement('script');
-        script.src = 'https://maps.googleapis.com/maps/api/js?key=' + apiKey + '&libraries=places,marker&loading=async';
+        script.src = 'https://maps.googleapis.com/maps/api/js?key=' + apiKey + '&libraries=places&loading=async';
         script.async = true;
         script.defer = true;
         script.onload = function() {
@@ -123,7 +123,7 @@
 
                 // Add center marker if enabled
                 if (settings.showCenterMarker) {
-                    var centerMarker = new google.maps.marker.AdvancedMarkerElement({
+                    var centerMarker = new google.maps.Marker({
                         position: center,
                         map: map,
                         title: settings.centerMarkerTitle || ''
@@ -144,16 +144,16 @@
                             content: contentString
                         });
 
-                        // Handle info window behavior with AdvancedMarkerElement
+                        // Handle info window behavior
                         if (settings.infoWindowState === 'always') {
-                            centerInfoWindow.open({map: map, anchor: centerMarker});
+                            centerInfoWindow.open(map, centerMarker);
                         } else if (settings.infoWindowState === 'click') {
                             centerMarker.addListener('click', function() {
-                                centerInfoWindow.open({map: map, anchor: centerMarker});
+                                centerInfoWindow.open(map, centerMarker);
                             });
                         } else if (settings.infoWindowState === 'hover') {
                             centerMarker.addListener('mouseover', function() {
-                                centerInfoWindow.open({map: map, anchor: centerMarker});
+                                centerInfoWindow.open(map, centerMarker);
                             });
                             centerMarker.addListener('mouseout', function() {
                                 centerInfoWindow.close();
@@ -210,15 +210,19 @@
 
         markers.forEach(function(markerData, index) {
             var addMarkerToMap = function(position) {
-                // Use AdvancedMarkerElement for better performance and features
-                var marker = new google.maps.marker.AdvancedMarkerElement({
+                // Create marker options
+                var markerOptions = {
                     position: position,
                     map: map,
                     title: markerData.title
-                });
+                };
 
-                // Note: Custom icons with AdvancedMarkerElement require PinElement
-                // For now, we'll use default markers
+                // Add custom icon if provided
+                if (markerData.icon) {
+                    markerOptions.icon = markerData.icon;
+                }
+
+                var marker = new google.maps.Marker(markerOptions);
                 markersArray.push(marker);
 
                 // Create info window if title or description exists
@@ -238,16 +242,16 @@
 
                     infoWindows.push(infoWindow);
 
-                    // Info window behavior with AdvancedMarkerElement
+                    // Info window behavior
                     if (infoWindowState === 'always' && index === 0) {
-                        infoWindow.open({map: map, anchor: marker});
+                        infoWindow.open(map, marker);
                     } else if (infoWindowState === 'click') {
                         marker.addListener('click', function() {
                             // Close all other info windows
                             infoWindows.forEach(function(iw) {
                                 iw.close();
                             });
-                            infoWindow.open({map: map, anchor: marker});
+                            infoWindow.open(map, marker);
                         });
                     } else if (infoWindowState === 'hover') {
                         marker.addListener('mouseover', function() {
@@ -255,7 +259,7 @@
                             infoWindows.forEach(function(iw) {
                                 iw.close();
                             });
-                            infoWindow.open({map: map, anchor: marker});
+                            infoWindow.open(map, marker);
                         });
                         marker.addListener('mouseout', function() {
                             infoWindow.close();
